@@ -13,6 +13,9 @@ func (b *Talkiepi) initGPIO() {
 	if err := rpio.Open(); err != nil {
 		fmt.Println(err)
 		b.GPIOEnabled = false
+		if b.Stream != nil {
+			b.TransmitStart()
+		}	
 		return
 	} else {
 		b.GPIOEnabled = true
